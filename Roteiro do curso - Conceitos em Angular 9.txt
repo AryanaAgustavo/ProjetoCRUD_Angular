@@ -1,0 +1,150 @@
+ROTEIRO CURSO DE ANGULAR 9
+
+>>Criamos um arquivo no VS Code com a pasta backend 
+>> Na pasta backend configuramos um arquivo simples de json 
+
+>>Pelo terminal iniciamos a instalação do angular e após criamos um arquivo angular
+	npm i -g @angular/cli
+	ng new NomePasta(--minimal) - minimal pede só as pastas essenciais
+
+*Voce pode colocar um novo prefixo para os componentes colocando 
+	--prefix NomePrefixo
+
+
+
+>>No arquivo Angular acessamos o arquivo de configuração "angular.json"
+	inlineTemplate - alterar para false
+	inLineStyle - alterar para false
+
+*Ou seja, estamos dizendo que as configurações não serão inline, e sim colocadas num arquivo
+
+>> Arquivo "main.ts" chama módulos para a aplicação
+
+>>"app.module.ts" - depine componentes para bootstrap
+
+>>no terminal colocamos  
+	 ng add @angular/material
+*para adicionar o layout de componentes - cores e estilo
+
+>> Criar componente
+	ng generate component components/template/header*nome e caminho do doc
+
+>>Dessa forma já é criada uma pasta component com o componente header em css, html e ts
+
+>> Para utilizar o componente basta colocar, no app.component.html, a tag <app-header/>  *por padrão coloca-se o "app-"
+
+
+>>Acrescentamos o import
+	import {MatToolbarModule} from '@angular/material/toolbar';
+*para importar o material e declaramos nos imports do app.module.ts
+
+
+
+
+------------------------------------------------------------------------
+****CONCEITOS IMPORTANTES****
+
+COMPONENTES
+	- Formados por HTML, CSS e TS
+
+
+DIRETIVAS 
+	- De atributo: altera a decoração ou comportamento do componente
+	- Estrutural/ de evento: altera adicionando ou removendo a DOM - estrutura da aplicação -; É percebida pelo uso do * 
+
+
+ROTAS
+	- Definição de rotas para componentes específicos
+	- a tag <a routerLink="/products"> é colocada e faz referencia ao path declarado no component
+
+
+PIPES |
+	- Processamento em cima de variáveis - você transforma o dado em data, moeda ou etc
+	>>  exemplo: {{ product.price | currency: 'BRL' }}
+
+
+OBSERVABLES
+	- Observadores que ficam esperando o evento acontecer
+	- callbacks esperam pelo evento e avisam de volta quando acontecer
+	- Vantagem dos observables: 
+		. São reutilizáveis - diferente das promises -;
+		. Stream de dados - um único observador vai recebendo os dados de tempos em tempos;
+		. Métodos filter, map e outros operadores para trabalhar com os dados recebidos.
+	- Só existe uma programação reativa com o uso dos observables
+
+
+SERVICES
+	- Classes para organizar e compartihlar métodos entre componentes
+	- Ajuda a separar as responsabilidades - tudo que é visual fica no Component, o que é método de acesso ao backend e regra de negócio fica na Service
+	- Angular não obriga o uso de Service
+
+
+INJEÇÃO DE DEPENDÊNCIAS
+	- Recebe outra classe ao invés de criar por conta própria
+	- No Angular colocamos a notação @Injectable - permite injetar em outra classe
+
+
+BINDINGS
+	- Fazer ligação entre um método e um botão, por exemplo - executar uma ação
+
+
+
+
+
+
+
+
+
+---------------------------------
+
+>> A pasta "views" são as páginas da aplicação - junção dos componentes
+
+>> Para criar as rotas usamos o arquivo app-routing.module.ts, na const routes:  
+	- fazemos os imports dos componentes
+	- acrescentamos no array vazio o caminho (path) e o componente que deve ser colocado (component)
+
+*Na nav.component também temos que declarar a rota com routerLink="/..." - para que haja o link para outra página
+
+
+
+****CRIAÇÃO DE TABELA EM ANGULAR****
+
+ng g @angular/material:table components/product/product-read2
+
+
+
+****DECLARAR MOEDA****
+
+>> Importa no app-module
+
+	import { NgModule, LOCALE_ID  } from '@angular/core';
+
+	import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+&
+
+providers: [{
+    provide: LOCALE_ID,
+    useValue: 'pt-BR'
+  }]
+
+registerLocaleData(localePt);
+
+
+
+>> e usar pipe | currency: 'BRL' no arquivo html
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
